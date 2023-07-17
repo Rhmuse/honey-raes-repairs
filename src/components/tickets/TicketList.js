@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import "./Tickets.css"
 
 export const TicketList = ({ searchTerm }) => {
@@ -111,6 +111,7 @@ export const TicketList = ({ searchTerm }) => {
                 filteredTickets.map(
                     (ticket) => {
                         return <section className='ticket' key={"ticket" + ticket.id}>
+                            <Link to={`/tickets/${ticket.id}/edit`}>Ticket {ticket.id}</Link>
                             <header>{ticket.description}</header>
                             <footer>Emergency: {ticket.emergency ? "Yes" : "No"}</footer>
                         </section>
