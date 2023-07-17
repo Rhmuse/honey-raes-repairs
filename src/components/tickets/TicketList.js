@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom';
 import "./Tickets.css"
@@ -62,12 +63,15 @@ export const TicketList = ({ searchTerm }) => {
             }
 
         },
-        [openOnly]
+        [openOnly, tickets]
     )
 
     useEffect(() => {
-        setFilteredTickets(tickets.filter(ticket => ticket.name.contains(searchTerm)))
-    },[searchTerm])
+        if (tickets.length > 0) {
+            setFilteredTickets(tickets.filter(ticket => ticket.description.includes(searchTerm)))
+        }
+
+    }, [searchTerm])
 
     return <>
         {
